@@ -1,27 +1,27 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""新文件标题
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"新建.c,.h,.sh,.java文件，自动插入文件头 
-autocmd BufNewFile *.cc,*.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()" 
-""定义函数SetTitle，自动插入文件头 
-func SetTitle() 
-	"如果文件类型为.sh文件 
-	if &filetype == 'sh' 
-		call setline(1,"\#########################################################################") 
-		call append(line("."), "\# File Name: ".expand("%")) 
-		call append(line(".")+1, "\# Author: zhangbo6") 
-		call append(line(".")+2, "\# mail: zhangbo6@staff.sina.com.cn") 
-		call append(line(".")+3, "\# Created Time: ".strftime("%c")) 
-		call append(line(".")+4, "\#########################################################################") 
-		call append(line(".")+5, "\#!/bin/bash") 
-		call append(line(".")+6, "") 
-	else 
-		call setline(1, "/**") 
-		call append(line("."), "* @file ".expand("%")) 
-		call append(line(".")+1, "* @author zhangbo6") 
-		call append(line(".")+2, "* @mail zhangbo6@staff.sina.com.cn ") 
-		call append(line(".")+3, "* @created time ".strftime("%c")) 
-		call append(line(".")+4, " **/") 
+"新建.c,.h,.sh,.java文件，自动插入文件头
+autocmd BufNewFile *.cc,*.cpp,*.[ch],*.sh,*.java exec ":call SetTitle()"
+""定义函数SetTitle，自动插入文件头
+func SetTitle()
+	"如果文件类型为.sh文件
+	if &filetype == 'sh'
+		call setline(1,"\#########################################################################")
+		call append(line("."), "\# File Name: ".expand("%"))
+		call append(line(".")+1, "\# Author: zhangbo6")
+		call append(line(".")+2, "\# mail: zhangbo6@staff.sina.com.cn")
+		call append(line(".")+3, "\# Created Time: ".strftime("%c"))
+		call append(line(".")+4, "\#########################################################################")
+		call append(line(".")+5, "\#!/bin/bash")
+		call append(line(".")+6, "")
+	else
+		call setline(1, "/**")
+		call append(line("."), "* @file ".expand("%"))
+		call append(line(".")+1, "* @author zhangbo6")
+		call append(line(".")+2, "* @mail zhangbo6@staff.sina.com.cn ")
+		call append(line(".")+3, "* @created time ".strftime("%c"))
+		call append(line(".")+4, " **/")
 		call append(line(".")+5, "")
 	endif
 	if &filetype == 'cpp'
@@ -42,7 +42,7 @@ func SetTitle()
 	"	endif
 	"新建文件后，自动定位到文件末尾
 	autocmd BufNewFile * normal G
-endfunc 
+endfunc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "键盘命令
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -51,18 +51,18 @@ endfunc
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 ""实用设置
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"代码补全 
-set completeopt=preview,menu 
-"允许插件  
+"代码补全
+set completeopt=preview,menu
+"允许插件
 filetype plugin on
-"从不备份  
+"从不备份
 set nobackup
 " 语法高亮
 set syntax=on
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
 " 自动缩进
-set autoindent
+"set autoindent
 set cindent
 " Tab键的宽度
 set tabstop=4
@@ -117,3 +117,6 @@ set smartindent
 set completeopt=longest,menu
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 highlight Comment ctermfg=gray guifg=gray
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$\| \+\ze\t\+\|\t\+\zs \+/
+set noautoindent
