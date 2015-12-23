@@ -59,6 +59,7 @@ filetype plugin on
 set nobackup
 " 语法高亮
 set syntax=on
+syntax enable
 " 在处理未保存或只读文件的时候，弹出确认
 set confirm
 " 自动缩进
